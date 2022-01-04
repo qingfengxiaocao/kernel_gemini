@@ -840,7 +840,7 @@ static inline void cpu_unprepare(struct lpm_cluster *cluster, int cpu_index,
 		msm_jtag_restore_state();
 }
 
-int get_cluster_id(struct lpm_cluster *cluster, int *aff_lvl)
+static int get_cluster_id(struct lpm_cluster *cluster, int *aff_lvl)
 {
 	int state_id = 0;
 
@@ -869,7 +869,7 @@ unlock_and_return:
 }
 
 #if !defined(CONFIG_CPU_V7)
-bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
+static bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
 {
 	struct lpm_cpu_level *cpu_level = &cluster->cpu->levels[idx];
 	/*
@@ -915,7 +915,7 @@ bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
 	}
 }
 #elif defined(CONFIG_ARM_PSCI)
-bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
+static bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
 {
 	if (!idx) {
 		stop_critical_timings();
@@ -940,7 +940,7 @@ bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
 	}
 }
 #else
-bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
+static bool psci_enter_sleep(struct lpm_cluster *cluster, int idx, bool from_idle)
 {
 	WARN_ONCE(true, "PSCI cpu_suspend ops not supported\n");
 	return false;
