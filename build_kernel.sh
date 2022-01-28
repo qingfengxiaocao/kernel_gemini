@@ -68,6 +68,8 @@ CLEANUP;
 
 BUILD_NOW()
 {
+	# Export compiler paths
+	PATH="clang/bin:aarch64-linux-android-4.9/bin:arm-linux-androideabi-4.9/bin:${PATH}"
 
 	# move into the kernel directory and compile the main image
 	echo "Compiling Kernel.............";
