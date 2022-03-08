@@ -30,8 +30,6 @@ LANG=C
 KERNELDIR=$(readlink -f .);
 
 # Some variables
-VER=B--B-Kernel
-export LOCALVERSION=~`echo $VER`
 export KBUILD_BUILD_USER=B--B
 export KBUILD_BUILD_HOST=JDCTeam
 
