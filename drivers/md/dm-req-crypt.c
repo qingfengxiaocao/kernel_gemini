@@ -45,7 +45,6 @@
 #define KEY_SIZE_XTS 32
 #define AES_XTS_IV_LEN 16
 #define MAX_MSM_ICE_KEY_LUT_SIZE 32
-#define SECTOR_SIZE 512
 #define MIN_CRYPTO_TRANSFER_SIZE (4 * 1024)
 
 #define DM_REQ_CRYPT_ERROR -1
@@ -373,7 +372,7 @@ static void req_cryptd_crypt_read_convert(struct req_dm_crypt_io *io)
 			split_io[i].engine = &curr_engine_list[i];
 			init_completion(&split_io[i].result.completion);
 			memset(&split_io[i].IV, 0, AES_XTS_IV_LEN);
-			tempiv = clone->__sector + (temp_size / SECTOR_SIZE);
+			tempiv = clone->__sector + (temp_size / 512);
 			memcpy(&split_io[i].IV, &tempiv, sizeof(sector_t));
 			temp_size +=  split_io[i].size;
 			split_io[i].clone = clone;
