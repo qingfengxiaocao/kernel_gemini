@@ -162,7 +162,7 @@ BUILD_NOW()
 		second_offset=0x80f00000
 		tags_addr=0x00000100
 		pagesize=4096
-		cmd_line="androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.selinux=permissive"
+		cmd_line="androidboot.hardware=qcom ehci-hcd.park=3 kpti=off loop.max_part=7 service_locator.enable=1 swiotlb=2048 usbcore.autosuspend=7 androidboot.selinux=permissive"
 		#./mkbootimg --kernel Image --ramdisk ramdisk.gz --cmdline "$cmd_line" --base $base --pagesize $pagesize --kernel_offset $kernel_offset --ramdisk_offset $ramdisk_offset --second_offset $second_offset --tags_offset $tags_addr -o newboot.img
 		./mkbootimg --kernel Image.gz-dtb --ramdisk ramdisk.gz --base $base --cmdline "$cmd_line" --pagesize $pagesize --kernel_offset $kernel_offset --ramdisk_offset $ramdisk_offset --tags_offset $tags_addr -o newboot.img
 		mv newboot.img ../boot.img
