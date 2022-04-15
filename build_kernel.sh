@@ -69,7 +69,7 @@ CLEANUP;
 BUILD_NOW()
 {
 	# Export compiler paths
-	PATH="clang/bin:aarch64-linux-android-4.9/bin:arm-linux-androideabi-4.9/bin:${PATH}"
+	PATH="google-ndk-clang/bin:aarch64-linux-android-4.9/bin:arm-linux-androideabi-4.9/bin:${PATH}"
 
 	# move into the kernel directory and compile the main image
 	echo "Compiling Kernel.............";
@@ -100,7 +100,7 @@ BUILD_NOW()
 	fi;
 
 	# build Image
-	time make ARCH=arm64 CC=clang CLANG_TRIPLE=clang/bin/aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-android-4.9/bin/aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi-4.9/bin/arm-linux-androideabi- -j $NR_CPUS
+	time make ARCH=arm64 CC=clang CLANG_TRIPLE=google-ndk-clang/bin/aarch64-linux- CROSS_COMPILE=aarch64-linux-android-4.9/bin/aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi-4.9/bin/arm-linux-androideabi- -j $NR_CPUS
 
 	cp "$KERNELDIR"/.config "$KERNELDIR"/arch/arm64/configs/"$KERNEL_CONFIG_FILE";
 
@@ -108,7 +108,7 @@ BUILD_NOW()
 
 	# compile the modules, and depmod to create the final Image
 	# echo "Compiling Modules............"
-	# time make ARCH=arm64 CC=clang CLANG_TRIPLE=clang/bin/aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-android-4.9/bin/aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi-4.9/bin/arm-linux-androideabi- modules -j ${NR_CPUS} || exit 1
+	# time make ARCH=arm64 CC=clang CLANG_TRIPLE=google-ndk-clang/bin/aarch64-linux- CROSS_COMPILE=aarch64-linux-android-4.9/bin/aarch64-linux-android- CROSS_COMPILE_ARM32=arm-linux-androideabi-4.9/bin/arm-linux-androideabi- modules -j ${NR_CPUS} || exit 1
 
 	# move the compiled Image and modules into the B--B working directory
 	echo "Move compiled objects........"
