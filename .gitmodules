@@ -6,3 +6,6 @@
 	path = arm-linux-androideabi-4.9
 	url = https://github.com/PixelExperience/prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9
 	branch = twelve
+[submodule "google-ndk-clang"]
+	path = google-ndk-clang
+	url = https://gitlab.com/B---B/google-ndk-clang.git
