@@ -121,3 +121,11 @@ android/configs/android-*.cfg
 #Ignoring Android.bp link file
 #
 Android.bp
+
+#
+# Build output files
+#
+*.S
+*.symversions
+B--B/view_only_config
+*.zip
